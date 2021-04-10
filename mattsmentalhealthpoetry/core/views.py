@@ -13,7 +13,7 @@ from flask_login import current_user, login_required
 @bp.route('/index/<int:poem_id>', methods=['GET', 'POST'])
 def home(poem_id=None):
 
-    user_check = Users.query.all()
+    user_check = User.query.all()
     if not user_check or (len(user_check) == 1
                       and user_check[0].name == "Dan Lucas"):
         return redirect(url_for('users.create_user'))
@@ -58,7 +58,7 @@ def home(poem_id=None):
 
     return render_template('home.html', title="Home", poems=poems,
                             form=form, poem=view_poem,
-                            num_comments=len(comments))
+                            num_comments=len(comments), select=poem_id)
 
 
 

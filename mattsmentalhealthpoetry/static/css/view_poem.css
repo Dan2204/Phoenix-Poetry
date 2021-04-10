@@ -294,6 +294,23 @@
   margin-right: auto;
 }
 
+#poem-list-tag {
+  text-decoration: none;
+  color: var(--color-secondary);
+}
+
+#poem-list-tag:hover {
+  text-decoration: none;
+  color: var(--color-secondaryT);
+  text-shadow: 0 0 8px rgba(200, 200, 200, 0.1);
+}
+
+#poem-list-tag:focus {
+  text-decoration: none;
+  color: #000;
+  text-shadow: 0 0 8px #ddd;
+}
+
 .footer {
   height: 100px;
   background-color: var(--bg-third);
@@ -307,7 +324,7 @@
 @media (max-width: 992px) {
   .poems-in-list {
     margin: 10px 12px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
   }
 
   #scroll-to-other-poems {
@@ -322,7 +339,7 @@
 @media (max-width: 768px) {
   .poems-in-list {
     margin: 10px 25px;
-    border: 1px solid green;
+    /* border: 1px solid green; */
   }
 
   #home-collapse a {
@@ -333,16 +350,16 @@
 @media (max-width: 575px) {
   .poems-in-list {
     margin: 10px 25px 10px 35px;
-    border: 1px solid blue;
-    color: blue;
+    /* border: 1px solid blue;
+    color: blue; */
   }
 }
 
 @media (max-width: 565px) {
   .poems-in-list {
     margin: 10px 20px 10px 30px;
-    border: 1px solid grey;
-    color: grey;
+    /* border: 1px solid grey;
+    color: grey; */
   }
 }
 
@@ -350,24 +367,24 @@
 @media (max-width: 555px) {
   .poems-in-list {
     margin: 10px 15px 10px 25px;
-    border: 1px solid yellow;
-    color: yellow;
+    /* border: 1px solid yellow;
+    color: yellow; */
   }
 }
 
 @media (max-width: 545px) {
   .poems-in-list {
     margin: 10px 10px 10px 20px;
-    border: 1px solid cyan;
-    color: cyan;
+    /* border: 1px solid cyan;
+    color: cyan; */
   }
 }
 
 @media (max-width: 535px) {
   .poems-in-list {
     margin: 10px 5px 10px 15px;
-    border: 1px solid white;
-    color: white;
+    /* border: 1px solid white;
+    color: white; */
   }
 }
 

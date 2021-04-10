@@ -13,8 +13,8 @@
       <!-- SECTION HEAD -->
       <div class="section-head">
         {% if poem %}
-          <h1>Latest poem...
-            <a href="#scroll-to-other-poems">[Poem List]</a>
+          <h1>{% if not select %}Latest poem...{% else %}Selected...{% endif %}
+            <a href="#scroll-to-other-poems" id="poem-list-tag">[Poem List]</a>
           </h1>
         {% else %}
           <h1>No Poems Available</h1>
@@ -32,7 +32,7 @@
 
               <!-- POEM HEADER -->
               <div class="card-header">
-                <h2>{{ poem.title }} -
+                <h2>'{{ poem.title }}'
                   <span class="text-muted poem-date">
                     Added {{ moment(poem.creation_date).format('LL') }}
                   </span>

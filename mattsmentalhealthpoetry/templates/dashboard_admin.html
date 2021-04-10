@@ -473,7 +473,7 @@
                           <div id="del-comment-options-popup{{comment.id}}" class="window-clear">
                             <div class="card-body text-left acc-pub-link" style="z-index: 100">
                               <p #id="accordian-link">
-                                <h5 class="publishing-style">'Comment by {{ comment.author.display_name }} for comment.poem.title'</h5>
+                                <h5 class="publishing-style">'Comment by {{ comment.author.display_name }} for {{ comment.poem.title }}'</h5>
                                 <hr>
                                 {% if comment.comment | length > 35 %}
                                   {% set content = comment.comment[:35] %}
