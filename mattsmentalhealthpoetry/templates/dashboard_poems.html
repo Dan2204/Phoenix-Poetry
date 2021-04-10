@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="jumbotron">
+      <div id="dash-head">
+        <h1>Dashboard - Poems</h1>
+        <hr>
+      </div> <!-- dash-head -->
+      <!-- PUBLISHED ACCORDIAN -->
+      <div class="publishing-accordian">
+        <div class="accordion" align='center' id="published_accordian">
+            <div class="card bg-light" style="max-width: 80%;">
+              <div class="card-header" id="published_a">
+                <h2 class="mb-0">
+                <button class="btn btn-link btn-block d-flex justify-content-between align-items-center"
+                        type="button" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne" id="enquires-style">
+                        Published Poems
+                        <span class="badge badge-info badge-pil">{{ published | length }}</span>
+                </button>
+                </h2>
+              </div>
+              {% for poem in published %}
+                <div id="collapseOne" class="collapse" aria-labelledby="published_a"
+                     data-parent="#published_accordian">
+                  <div class="card-body text-left acc-pub-link">
+                    <a href="#" #id="accordian-link">
+                      <h5 class="publishing-style">'{{ poem.title }}'</h5>
+                      {% if poem.content | length > 35 %}
+                        {% set content = poem.content[:35] %}
+                      {% else %}
+                        {% set content = poem.content %}
+                      {% endif %}
+                      <h5 class="publishing-style">'{{ content }}'...</h5>
+                      <img src="{{ url_for('static', filename='poem_pics/' + poem.poem_image) }}" width="50" height="50">
+                      <h3 class="publishing-style">Image: {{ poem.poem_image }}</h3>
+                      <h3 class="publishing-style">Created on: {{ moment(current_user.creation_date).format('LL') }}</h3>
+                    </a>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div> <!-- accordian -->
+
+          <!-- UNPUBLISHED ACCORDIAN -->
+          <div class="accordion" align='center' id="unpublished_accordian">
+              <div class="card bg-light" style="max-width: 80%;">
+                <div class="card-header" id="unpublished_a">
+                  <h2 class="mb-0">
+                  <button class="btn btn-link btn-block d-flex justify-content-between align-items-center"
+                          type="button" data-toggle="collapse" data-target="#collapseTwo"
+                          aria-expanded="true" aria-controls="collapseOne" id="enquires-style">
+                          Unpublished Poems
+                          <span class="badge badge-info badge-pil">{{ unpublished | length }}</span>
+                  </button>
+                  </h2>
+                </div>
+                {% for poem in unpublished %}
+                  <div id="collapseTwo" class="collapse" aria-labelledby="unpublished_a"
+                       data-parent="#unpublished_accordian">
+                    <div class="card-body text-left acc-pub-link">
+                      <a href="#" #id="accordian-link">
+                        <h5 class="publishing-style">'{{ poem.title }}'</h5>
+                        {% if poem.content | length > 35 %}
+                          {% set content = poem.content[:35] %}
+                        {% else %}
+                          {% set content = poem.content %}
+                        {% endif %}
+                        <h5 class="publishing-style">'{{ content }}'...</h5>
+                        <img src="{{ url_for('static', filename='poem_pics/' + poem.poem_image) }}" width="50" height="50">
+                        <h3 class="publishing-style">Image: {{ poem.poem_image }}</h3>
+                        <h3 class="publishing-style">Created on: {{ moment(poem.creation_date).format('LL') }}</h3>
+                      </a>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div> <!-- accordian -->
+
+        </div> <!-- publishing-accordian -->
+      </div> <!-- jumbotron -->
+    </div> <!-- container -->
+
+
+
+
+{% endblock %}

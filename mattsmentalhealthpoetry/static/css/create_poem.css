@@ -1,0 +1,41 @@
+.message-img{
+  display: none;
+}
+
+#ul_img_file {
+  font-size: .9rem;
+}
+
+.post-img h5 {
+  position: relative;
+  /* color: #fff; */
+}
+
+.post-img i {
+  position: absolute;
+  top: -8px;
+  right: -40px;
+  padding-top: 5px;
+  font-size: 1.8rem;
+}
+
+.post-img label {
+  font-size: 50px;
+  padding-left: 0px;
+  padding-top: 8px;
+  opacity: 0.5;
+}
+
+.post-img label:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  text-shadow: 0 0 10px var(--text-color);
+  color: #000;
+}
+
+.post-img label:focus {
+  cursor: pointer;
+  opacity: 0.8;
+  color: #555;
+  text-shadow: 0 0 10px #000;
+}

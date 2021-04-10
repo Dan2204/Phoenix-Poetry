@@ -1,0 +1,154 @@
+<!-- {% extends 'base.html' %}
+
+{% block content %}
+
+  <!-- MAIN PAGE CONTAINER -->
+  <div class="container" id="main-page-container">
+    <!-- poem-container -->
+    <div class="poem-container">
+
+      <!-- SECTION HEAD -->
+      <div class="section-head">
+        {% if poem %}
+          <h1>Latest poem...</h1>
+        {% else %}
+          <h1>No Poems Available</h1>
+        {% endif %}
+      </div> <!-- SECTION HEAD -->
+
+      <!-- POEM CONTENT -->
+      <div class="poem-content">
+
+        <!-- POEM CARD -->
+        <div class="card poem-card">
+
+          <!-- POEM HEADER -->
+          <div class="card-header">
+            <h2>{{ poem.title }} -
+              <span class="text-muted poem-date">
+                Added {{ moment(poem.creation_date).format('LL') }}
+              </span>
+            </h2>
+          </div> <!-- POEM HEADER -->
+
+          <!-- POEM BODY -->
+          <div class="card-body poem-card-body">
+            <p>{{ poem.content }}</p> <!-- POEM CONTENT -->
+            <p>{{ poem.user.name }}</p>
+          </div> <!-- POEM BODY -->
+
+        </div> <!-- POEM CARD -->
+
+        <!-- POEM IMAGE -->
+        <div class="poem-image">
+          {% if poem.poem_image %}
+            <img style="width: 100%" class="card-img" src="{{ url_for('static', filename='poem_pics/' + poem.poem_image) }}">
+          {% else %}
+            <img style="width: 100%" class="card-img" src="{{ poem.user.avatar(256) }}">
+          {% endif %}
+        </div> <!-- POEM IMAGE -->
+        {% if not preview %}
+          <!-- COMMENTS CARD -->
+          <div class="card comments-card">
+
+            <!-- COMMENTS HEADER -->
+            <div class="card-header" id="comments-header">
+              <p id="show-hide-comments">
+                {% if num_comments%}
+                <a>
+                  {{ num_comments }} comment{% if num_comments > 1 %}s{% endif %}
+                </a>
+                {% else %}
+                <a>
+                  comment
+                </a>
+                {% endif %}
+              </p> <!-- show-hide-comments -->
+              <hr>
+            </div> <!-- COMMENTS HEADER -->
+
+            <!-- COMMENTS BODY (LIST) -->
+            <div class="card-body" id="comments-body">
+              {% for comment in poem.comments | sort(attribute='creation_date', reverse=True) %}
+              {% if comment.approve and comment.active %}
+              {% if comment.comment | length * 5 < 200 %}
+                {% set comment_width = 200 %}
+              {% elif comment.comment | length * 5 > 390 %}
+                {% set comment_width = 390 %}
+              {% else %}
+                {% set comment_width = comment.comment | length * 5 - 30 %}
+              {% endif %}
+                <div class="poem-comment" style="width: {{ comment_width }}px;">
+                  <a class="comment-author">{{ comment.author.display_name }}</a>
+                  {% if current_user.admin %}
+                    <span class="comment-trash" style="float: right; padding-bottom: 2px;">
+                      <a href="{{ url_for('core.delete_comment', comment_id=comment.id) }}"
+                        class="message-option-icon">
+                          <i class="fas fa-trash-alt"></i>
+                      </a>
+                    </span>
+                  {% endif %}
+                  <p class="comment-comment">{{ comment.comment }}</p>
+                  <p class="comment-date">{{ moment(comment.creation_date).fromNow() }}</p>
+                  <!-- <p class="comment-comment">width: {{ comment_width }}</p> -->
+                </div>
+              {% endif %}
+              {% endfor %}
+            </div> <!-- COMMENTS BODY (LIST) -->
+
+            <!-- COMMENTS FOOTER (WRITE COMMENT) -->
+            <div class="card-footer" id="comment-input">
+            {% if current_user.is_authenticated %}
+              <form method="POST">
+                {{ form.hidden_tag() }}
+                <p>
+                  {{ form.comment(rows=1, id="input-box",
+                                  placeholder="Say something...",
+                                  class="resize-ta") }}
+                </p>
+                {{ form.submit_comment(class="btn btn-primary", id="comment-submit-btn") }}
+
+              </form>
+            {% else %}
+              <div class="no-user">
+                <p style="color: var(--text-color);">Please
+                  <span>
+                    <a href="{{ url_for('users.login') }}">sign in</a>
+                  </span> or
+                  <span>
+                    <a href="{{ url_for('users.create_user') }}">sign up</a>
+                  </span>
+                   to comment
+                 </p>
+                <p>Your details will never be passed to 3rd parties</p>
+              </div>
+            {% endif %}
+            </div> <!-- COMMENTS FOOTER (WRITE COMMENT) -->
+
+          </div> <!-- COMMENTS CARD -->
+        {% else %}
+          <div class="add-space"></div>
+          <div class="add-black"></div>
+        {% endif %}
+
+      </div> <!-- POEM CONTENT -->
+
+    </div> <!-- poem-container -->
+  </div> <!-- MAIN PAGE CONTAINER -->
+  <div class="footer"></div>
+
+
+{% endblock %}
+
+
+<!-- ####### -->
+<!-- PAGE JS -->
+<!-- ####### -->
+{% block script %}
+<script type="text/javascript">
+
+  {% include 'js/poem_view_script.js' %}
+
+</script>
+
+{% endblock %} -->

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="container" id="login-page">
+    <div class="jumbotron login-style">
+      <h1>All New Comments</h1>
+      <hr class="hr-head" style="width: 275px;">
+      {% if comments %}
+        <div id="latest_comments">
+          {% for i in range(comments | length) %}
+            {% include '_new_comment_card.html' %}
+          {% endfor %}
+          <div class="mt-3">
+            <a class="back-to-dash"
+               href="{{ url_for('dashboard.admin') }}">back to dashboard
+              <span>
+                <i class="far fa-hand-point-left"></i>
+              </span>
+            </a>
+          </div>
+        </div> <!-- latest_comments -->
+
+      {% else %}
+        <h5>No Comments -
+          <span id="comment-back-link">
+            <a href="{{ url_for('dashboard.admin') }}">Back to dashboard</a>
+          </span>
+        </h5>
+      {% endif %}
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{% block script %}
+
+<script type="text/javascript">
+
+  {% include 'js/tooltip_button_script.js' %}
+
+</script>
+
+{% endblock %}

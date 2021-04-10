@@ -1,0 +1,45 @@
+
+{% if comments[i].comment | length > 50 %}
+  {% set content = comments[i].comment[:50] %}
+{% else %}
+  {% set content = comments[i].comment %}
+{% endif %}
+<div class="admin-hover">
+  <div class="card"
+       style="margin-bottom: 5px;">
+    <div class="card-body" style="padding: 5px 5px 5px 10px;">
+      <div class="body-content">
+
+        <p id="comment-title"
+           class="mb-2">{{ comments[i].author.display_name }} commented on '{{ comments[i].poem.title }}'</p>
+
+        <hr style="border-bottom: 2px solid var(--bg-colorT); width: 95%; margin: 0 0 10px 0; border-radius: 50%;">
+
+        <p style="margin-bottom: 0;">{{ content }}{% if content | length > 49 %} ...
+          <span style="position: relative">
+
+            <p style="font-size: .8rem; cursor: pointer; position: absolute; bottom: 10%; right: 10px;"
+
+               class="comment_tooltip_hover" id="toggle-click-hover{{ comments[i].id }}">[...]
+
+              <!-- comment_tt_text{{ comments[i].id }} -->
+              <span id="comment_tt_text{{ comments[i].id }}"
+                    class="comment_tt_text">{{ comments[i].comment }}</span>
+
+            </p>
+          </span>{% endif %}
+        </p>
+        <hr style="border-bottom: 2px solid var(--bg-colorT); width: 95%; margin: 10px 0 5px 0; border-radius: 50%;">
+        <div id="approve-deny-btns" class="mt-2">
+          <a href="{{ url_for('dashboard.comment_approval', comment_id=comments[i].id, approve_deny='approve', title=title) }}"
+             id="comment-approve" style="margin-top: 20px;">Approve </a>
+          |
+          <a href="{{ url_for('dashboard.comment_approval', comment_id=comments[i].id, approve_deny='deny', title=title) }}"
+             id="comment-deny"> deny</a>
+        </div>
+
+      </div> <!-- BODY-CONTENT -->
+
+    </div>
+  </div> <!-- CARD 1 -->
+</div>

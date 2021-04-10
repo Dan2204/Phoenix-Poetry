@@ -1,0 +1,534 @@
+{% extends 'base.html' %}
+
+<!-- ############ -->
+<!-- PAGE CONTENT -->
+<!-- ############ -->
+{% block content %}
+
+  <div class="container" id="dash-page">
+    <div class="jumbotron dash-style"
+         style="border: 2px solid var(--color-secondaryT); margin-right: 0; ">
+
+      <!-- DASHBORD HEADER -->
+      <div id="dash-head">
+        <h1>Dashboard</h1>
+        <hr class="hr-head" style="width: 200px;">
+      </div> <!-- dash-head -->
+
+      <!-- DASHBOARD CONTENT CONTAINER -->
+      <div class="user-list-container">
+
+        <div class="row">
+
+
+          <!----------------->
+          <!-- POEMS ADMIN -->
+          <!----------------->
+
+          <!-- SECTION_START -->
+          <div class="user-list-dash">
+
+            <div class="admin-section-c" id="poems-admin">
+
+              <div class="card" id="card-width">
+                <h3 id="admin-icon">Poems
+                  <a href="{{ url_for('poems.create_poem') }}">
+                    <i class="fas fa-plus"></i>
+                  </a>
+                </h3>
+              </div>
+
+
+              <!------------------------------->
+              <!-- PUBLISHED POEMS ACCORDION -->
+
+              <div class="publishing-accordian">
+
+                <!-- START OF ACCORDION GROUP - data-parent="#publishing-accordion"-->
+                <div class="accordion" align='center' id="publishing-accordion">
+
+                    <!-- MAIN CARD  -->
+                    <div class="card bg-dark main-card" style="max-width: 80%;">
+
+                      <!-- CARD HEADER - ALSO THE TOGGLE -->
+                      <div class="card-header" style="border-radius: 5px; margin-bottom: 5px;">
+
+                        <!-- PUBLISHED POEMS TITLE (TOGGLE) -->
+                        <h2 class="mb-0" class="accordion-poem-button">
+                          <button class="btn btn-link btn-block d-flex justify-content-between align-items-center"
+                                  type="button" data-toggle="collapse" data-target="#collapseOne" id="enquires-style">
+                                    <span style="padding: 0 10px">Published Poems</span>
+                                    <span class="badge badge-info badge-pil acc-badge"
+                                          style="margin-right: 10px;">{{ published | length }}</span>
+                          </button>
+                        </h2> <!-- (END) PUBLISHED POEMS TITLE (TOGGLE) -->
+
+                      </div> <!-- (END) CARD HEADER - ALSO THE TOGGLE -->
+
+                      <!-- START TO LOOP THROUGH PUBLISHED POEMS -->
+                      {% for poem in published %}
+
+                        <!-- MARKER FOR ACCORDION COLLAPSE -->
+                        <div id="collapseOne" class="collapse pub-men-options" data-parent="#publishing-accordion">
+
+                          <!-- ID DECLARATION FOR JAVASCRIPT (SHOW/HIDE OPTIONS MENU) -->
+                          <div id="pub-options-popup{{poem.id}}" class="window-clear">
+
+                            <!-- START OF CARD BODY -->
+                            <div class="card-body text-left acc-pub-link">
+
+                              <!-- CLICK ANTWHERE ON CARD TO BRING UP MENU -->
+                              <p href="" id="accordian-link">
+
+                                <!-- JINJA2 CODE TO SET LENGTH OF POEM TO SHOW -->
+                                {% if poem.content | length > 30 %}
+                                  {% set content = poem.content[:30] + " .." %}
+                                {% else %}
+                                  {% set content = poem.content %}
+                                {% endif %} <!-- (END) JINJA2 CODE TO SET LENGTH OF POEM TO SHOW -->
+
+                                <!-- EACH PUBLISHED POEM CARD -->
+                                <div class="row">
+
+                                  <!-- PUT IMG TO SIDE ON SMALL SCREENS -->
+                                  <div class="col-sm-2">
+
+                                    <!-- IF POEM HAS AN IMG SHOW ELSE USE AVATAR -->
+                                    {% if poem.poem_image %}
+                                      <img src="{{ url_for('static', filename='poem_pics/' + poem.poem_image) }}"
+                                           width="50" height="50">
+                                    {% else %}
+                                      <img class="card-img" src="{{ poem.user.avatar(256) }}">
+                                    {% endif %} <!-- (END) IF POEM HAS AN IMG SHOW ELSE USE AVATAR -->
+
+                                  </div> <!-- (END) PUT IMG TO SIDE ON SMALL SCREENS -->
+
+                                  <!-- MAIN CONTENT (TO RIGHT OF IMG ON SMALL SCREENS) -->
+                                  <div class="col-sm-10" id="acc-pub-content">
+                                    <h5 class="publishing-style" id="title-small">'{{ poem.title }}'</h5>
+                                    <h5 class="publishing-style">' {{ content }} '</h5>
+                                    <h3 class="publishing-style">Created on: {{ moment(poem.creation_date).format('LL') }}</h3>
+                                    <h3 class="publishing-style">Last modified on: {{ moment(poem.last_modified).format('LL') }}</h3>
+                                  </div> <!-- (END) MAIN CONTENT (TO RIGHT OF IMG ON SMALL SCREENS) -->
+
+                                </div> <!-- (END) EACH PUBLISHED POEM CARD -->
+
+                                <!-- POPUP MENU FOR EACH CARD -->  <!-- ID FOR JAVASCRIPT TO BE SHOWN WHEN DECLARATION CLICKED -->
+                                <span class="pub-men-options-text pop-menu" id="pub-options-popup-text{{ poem.id }}">
+                                    <p style="padding-bottom: 5px; margin-bottom: 0; cursor: text;">{{ poem.title }}</p>
+                                    <hr style="margin: 0 5px 5px 0; border-bottom: 2px solid  rgba(23, 162, 184, 0.3); width: 50%;">
+                                    <a href="{{ url_for('dashboard.publish', poem_id=poem.id, publish_poem=False) }}">Unpublish</a><br>
+                                    <a href="{{ url_for('dashboard.editpoem', poem_id=poem.id) }}">Edit</a><br>
+                                    <a href="{{ url_for('dashboard.delete_bin_poem', poem_id=poem.id) }}">Send to bin</a><br>
+                                </span> <!-- (END) POPUP MENU FOR EACH CARD -->
+
+                              </p> <!-- (END) CLICK ANTWHERE ON CARD TO BRING UP MENU -->
+
+                            </div> <!-- (END) START OF CARD BODY -->
+
+                          </div> <!-- (END) ID DECLARATION FOR JAVASCRIPT (SHOW/HIDE) -->
+
+                        </div> <!-- (END) MARKER FOR ACCORDION COLLAPSE -->
+
+                      {% endfor %} <!-- (END) LOOP THROUGH PUBLISHED POEMS -->
+
+                    </div> <!-- (END) MAIN CARD  -->
+
+                  </div> <!-- (END) ACCORDION GROUP - MOVE THIS TO INCLUDE ANOTHER ACCORDION -->
+
+
+                <!--------------------------------->
+                <!-- UNPUBLISHED POEMS ACCORDION -->
+                <!--------------------------------->
+
+                  <!-- START OF ACCORDION GROUP - data-parent="#publishing-accordion"-->
+                  <div class="accordion" align='center' id="unpublished_accordian">
+
+                    <!-- MAIN CARD  -->
+                    <div class="card bg-dark main-card" style="max-width: 80%;">
+
+                      <!-- CARD HEADER - ALSO THE TOGGLE -->
+                      <div class="card-header" style="border-radius: 5px; margin-bottom: 5px;">
+
+                        <!-- PUBLISHED POEMS TITLE (TOGGLE) -->
+                        <h2 class="mb-0" class="accordion-poem-button">
+                        <button class="btn btn-link btn-block d-flex justify-content-between align-items-center"
+                                type="button" data-toggle="collapse" data-target="#collapseTwo" id="enquires-style">
+                                  <span style="padding: 0 10px">Unpublished Poems</span>
+                                  <span class="badge badge-info badge-pil acc-badge"
+                                        style="margin-right: 10px;">{{ unpublished | length }}</span>
+                        </button>
+                        </h2> <!-- (END) PUBLISHED POEMS TITLE (TOGGLE) -->
+
+                      </div> <!-- (END) CARD HEADER - ALSO THE TOGGLE -->
+
+                      <!-- START TO LOOP THROUGH UNPUBLISHED POEMS -->
+                      {% for poem in unpublished %}
+
+                        <!-- MARKER FOR ACCORDION COLLAPSE -->
+                        <div id="collapseTwo" class="collapse pub-men-options" data-parent="#unpublished_accordian">
+
+                          <!-- ID DECLARATION FOR JAVASCRIPT (SHOW/HIDE OPTIONS MENU) -->
+                          <div id="options-popup{{poem.id}}" class="window-clear">
+
+                            <!-- START OF CARD BODY -->
+                            <div class="card-body text-left acc-pub-link">
+
+                              <!-- CLICK ANTWHERE ON CARD TO BRING UP MENU -->
+                              <p href="" id="accordian-link">
+
+                                <!-- JINJA2 CODE TO SET LENGTH OF POEM TO SHOW -->
+                                {% if poem.content | length > 30 %}
+                                  {% set content = poem.content[:30] %}
+                                {% else %}
+                                  {% set content = poem.content %}
+                                {% endif %} <!-- (END) JINJA2 CODE TO SET LENGTH OF POEM TO SHOW -->
+
+                                <!-- EACH PUBLISHED POEM CARD -->
+                                <div class="row">
+
+                                  <!-- PUT IMG TO SIDE ON SMALL SCREENS -->
+                                  <div class="col-sm-2">
+
+                                    <!-- IF POEM HAS AN IMG SHOW ELSE USE AVATAR -->
+                                    {% if poem.poem_image %}
+                                      <img src="{{ url_for('static', filename='poem_pics/' + poem.poem_image) }}" width="50" height="50">
+                                    {% else %}
+                                      <img class="card-img" src="{{ poem.user.avatar(256) }}">
+                                    {% endif %} <!-- (END) IF POEM HAS AN IMG SHOW ELSE USE AVATAR -->
+
+                                  </div> <!-- (END) PUT IMG TO SIDE ON SMALL SCREENS -->
+
+                                  <!-- MAIN CONTENT (TO RIGHT OF IMG ON SMALL SCREENS) -->
+                                  <div class="col-sm-10" id="acc-pub-content">
+                                    <h5 class="publishing-style" id="title-small">'{{ poem.title }}'</h5>
+                                    <h5 class="publishing-style">'{{ content }}'{% if content | length >35 %}...{% endif %}</h5>
+                                    <h3 class="publishing-style">Created on: {{ moment(poem.creation_date).format('LL') }}</h3>
+                                    <h3 class="publishing-style">Last modified on: {{ moment(poem.last_modified).format('LL') }}</h3>
+                                  </div> <!-- (END) MAIN CONTENT (TO RIGHT OF IMG ON SMALL SCREENS) -->
+
+                                </div> <!-- (END) EACH PUBLISHED POEM CARD -->
+
+                                <!-- POPUP OPTIONS MENU -->
+                                <span class="pub-men-options-text" id="options-popup-text{{ poem.id }}">
+                                    <p style="padding-bottom: 5px; margin-bottom: 0; cursor: text;">{{ poem.title }}</p>
+                                    <hr style="margin: 0 5px 5px 0; border-bottom: 2px solid  rgba(23, 162, 184, 0.3); width: 50%;">
+                                    <a href="{{ url_for('dashboard.publish', poem_id=poem.id, publish_poem=True) }}">Publish</a><br>
+                                    <a href="{{ url_for('dashboard.editpoem', poem_id=poem.id) }}">Edit</a><br>
+                                    <a href="{{ url_for('dashboard.delete_bin_poem', poem_id=poem.id) }}">Send to bin</a><br>
+                                </span> <!-- (END) POPUP OPTIONS MENU -->
+
+                              </p> <!-- (END) CLICK ANTWHERE ON CARD TO BRING UP MENU -->
+
+                            </div> <!-- (END) START OF CARD BODY -->
+
+                          </div> <!-- (END) ID DECLARATION FOR JAVASCRIPT (SHOW/HIDE OPTIONS MENU) -->
+
+                        </div> <!-- (END) MARKER FOR ACCORDION COLLAPSE -->
+
+                      {% endfor %} <!-- (END) START TO LOOP THROUGH UNPUBLISHED POEMS -->
+
+                    </div> <!-- (END) MAIN CARD  -->
+
+                  </div> <!-- (END) ACCORDION GROUP - MOVE THIS TO INCLUDE ANOTHER ACCORDION -->
+
+                </div> <!-- publishing-accordian -->
+
+              </div> <!-- admin-section -->
+
+          </div> <!-- (END) SECTION_START -->
+
+
+      <!------------------->
+      <!-- USER SETTINGS -->
+      <!------------------->
+
+          <!-- SECTION_START -->
+          <div class="user-list-dash">
+
+            <div class="admin-section-c" id="users_settings" style="padding-bottom: 10px;">
+              <div class="admin-hover">
+
+                <div class="card" id="card-width">
+                  <h3 id="admin-icon">Users/Settings
+                    <a href="{{ url_for('users.create_user') }}"
+                       style="">
+                      <i class="fas fa-plus"></i>
+                    </a>
+                  </h3>
+                </div>
+
+                <hr style="margin: 0 0 5px 0;">
+                <div class="card" id="admin-usr-options">
+                  <a href="{{ url_for('users.edit_users') }}">Edit Users</a>
+                  <a href="{{ url_for('users.change_password') }}">Change Password</a>
+                </div>
+              </div> <!-- ADMIN HOVER -->
+            </div> <!-- admin-section -->
+
+          </div> <!-- user-list -->
+
+          <div class="user-list-dash">
+
+
+      <!-------------------->
+      <!-- COMMENTS ADMIN -->
+      <!-------------------->
+
+          <div class="admin-section-c" id="comments_admin" style="padding-bottom: 5px;">
+
+            <div class="card card-title" id="card-width">
+
+              <h3 id="admin-icon" style="padding-top: 10px;">Latest Comments</h3>
+
+            </div>
+
+            {% if comments %}
+
+              {% if comments | length > 3 %}
+                {% set num_comments = 3 %}
+              {% else %}
+                {% set num_comments = comments | length %}
+              {% endif %}
+
+            <div id="latest_comments"
+                 style="margin-left: 5px; margin-right: 5px;">
+              {% for i in range(num_comments) %}
+              <!-- DEMO CARD1 -->
+
+                {% include '_new_comment_card.html' %}
+
+              {% endfor %}
+
+              {% if comments | length > 3 %}
+                <div id="comments-footer"
+                     style="padding-top: 3px;">
+                  <a class="back-to-dash"
+                     href="{{ url_for('dashboard.all_new_comments') }}"
+                     id="comments-view-all">View more</a>
+                </div> <!-- comments-footer -->
+              {% endif %}
+
+            </div> <!-- latest_comments -->
+            {% else %}
+              <h5 class="text-muted" style="padding: 5px 0 3px 0;">No new comments</h5>
+              <hr style="margin: 0 0 5px 0;">
+            {% endif %}
+          </div> <!-- admin-section -->
+
+          </div> <!-- user-list -->
+
+
+      <!------------------->
+      <!-- DELETED ADMIN -->
+      <!------------------->
+
+
+          <div class="user-list-dash">
+
+          <!-- DELETED ADMIN -->
+          <div class="admin-section-c" id="deleted_admin" style="padding-bottom: 5px;">
+
+              <div class="card" id="card-width">
+                <h3 id="admin-icon" style="margin: 10px 0 0 0;">Deleted</h3>
+              </div>
+
+                <div class="text-muted">
+                  <div class="publishing-accordian" style="margin-top: 10px;">
+
+                  {% if deleted['Users'] %}
+
+                  <!-- DELETED USERS ACCORDION -->
+                  <div class="accordion" align='center' id="del_users_accordion">
+
+                      <div class="card bg-dark main-card" style="max-width: 80%; margin-bottom: 10px;">
+
+                        <div class="card-header" style="border-radius: 5px; margin-bottom: 5px;" id="deleted_users">
+
+                          <h2 class="mb-0" class="accordion-poem-button">
+                          <button class="btn btn-link btn-block d-flex justify-content-between align-items-center"
+                                  type="button" data-toggle="collapse" data-target="#collapse_users_del" id="enquires-style">
+                                    <span style="padding: 0 10px">Deleted Users</span>
+                                    <span class="badge badge-info badge-pil acc-badge"
+                                          style="margin-right: 10px;">{{ deleted['Users'] }}</span>
+                          </button>
+                          </h2>
+
+                        </div>
+
+                        {% for user in del_users %}
+                          <div id="collapse_users_del" class="collapse pub-men-options" aria-labelledby="deleted_users"
+                               data-parent="#del_users_accordion">
+                          <div id="del-usr-options-popup{{user.id}}" class="window-clear">
+                            <div class="card-body text-left acc-pub-link" style="z-index: 100">
+                              <p #id="accordian-link">
+                                <h5 class="publishing-style">'{{ user.display_name }}'</h5>
+                                <hr>
+                                <h3 class="publishing-style">Created on: {{ moment(user.creation_date).format('LL') }}</h3>
+                                <!-- POPUP MENU -->
+                                <span class="pub-men-options-text" id="del-usr-options-popup-text{{ user.id }}">
+                                  <p style="padding-bottom: 5px; margin-bottom: 0; cursor: text;">{{ user.name }}</p>
+                                  <hr style="margin: 0 5px 5px 0; border-bottom: 2px solid  rgba(23, 162, 184, 0.3); width: 50%;">
+                                    <a href="{{ url_for('dashboard.restore_delete_user', user_id=user.id, restore=True) }}">Restore</a><br>
+                                    <a href="{{ url_for('dashboard.restore_delete_user', user_id=user.id, restore=False) }}">Delete Permanently</a><br>
+                                </span>
+                              </p>
+                            </div>
+                          </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div> <!-- accordian -->
+
+                  {% endif %}
+
+                  {% if deleted['Poems'] %}
+
+                  <!-- DELETED POEMS ACCORDION -->
+                  <div class="accordion" align='center' id="del_poems_accordion">
+                      <div class="card bg-dark main-card" style="max-width: 80%; margin-bottom: 10px;">
+                        <div class="card-header" style="border-radius: 5px; margin-bottom: 5px;" id="deleted_poems">
+                          <h2 class="mb-0">
+                          <button class="btn btn-link btn-block d-flex justify-content-between align-items-center"
+                                  type="button" data-toggle="collapse" data-target="#collapse_poems_del" id="enquires-style">
+                                  <span style="padding: 0 10px">Deleted Poems</span>
+                                  <span class="badge badge-info badge-pil acc-badge"
+                                        style="margin-right: 10px;">{{ deleted['Poems'] }}</span>
+                          </button>
+                          </h2>
+                        </div>
+                        {% for poem in del_poems %}
+                          <div id="collapse_poems_del" class="collapse pub-men-options" aria-labelledby="deleted_poems"
+                               data-parent="#del_poems_accordion">
+
+                          <div id="del-poem-options-popup{{poem.id}}" class="window-clear">
+
+                            <div class="card-body text-left acc-pub-link">
+
+                              <p href="" id="accordian-link">
+
+                                {% if poem.content | length > 30 %}
+                                  {% set content = poem.content[:30] %}
+                                {% else %}
+                                  {% set content = poem.content %}
+                                {% endif %}
+                                <div class="row">
+                                  <div class="col-sm-2">
+                                    {% if poem.poem_image %}
+                                      <img src="{{ url_for('static', filename='poem_pics/' + poem.poem_image) }}"
+                                           width="50" height="50">
+                                    {% else %}
+                                      <img class="card-img" src="{{ poem.user.avatar(256) }}">
+                                    {% endif %}
+                                  </div>
+
+                                  <div class="col-sm-10" id="acc-pub-content">
+                                    <h5 class="publishing-style" id="title-small">'{{ poem.title }}'</h5>
+                                    <h5 class="publishing-style">'{{ content }}'...</h5>
+                                    <h3 class="publishing-style">Created on: {{ moment(poem.creation_date).format('LL') }}</h3>
+                                    <h3 class="publishing-style">Last modified on: {{ moment(poem.last_modified).format('LL') }}</h3>
+                                  </div>
+                                </div>
+
+                                <!-- POPUP MENU -->
+                                <span class="pub-men-options-text" id="del-poem-options-popup-text{{ poem.id }}">
+                                    <p style="padding-bottom: 5px; margin-bottom: 0; cursor: text;">{{ poem.title }}</p>
+                                    <hr style="margin: 0 5px 5px 0; border-bottom: 2px solid  rgba(23, 162, 184, 0.3); width: 50%;">
+                                    <a href="{{ url_for('dashboard.restore_delete_poem', poem_id=poem.id, restore=True) }}">Restore</a><br>
+                                    <a href="{{ url_for('dashboard.restore_delete_poem', poem_id=poem.id, restore=False) }}">Delete Permanently</a><br>
+                                </span>
+                              </p>
+                            </div>
+                          </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div> <!-- accordian -->
+
+                  {% endif %}
+
+                  {% if deleted['Comments'] %}
+
+                  <!-- DELETED COMMENTS ACCORDION -->
+                  <div class="accordion" align='center' id="del_comments_accordion">
+
+                      <div class="card bg-dark main-card" style="max-width: 80%; margin-bottom: 10px;">
+
+                        <div class="card-header" style="border-radius: 5px; margin-bottom: 5px;" id="deleted_comments">
+
+                          <h2 class="mb-0">
+                            <button class="btn btn-link btn-block d-flex justify-content-between align-items-center"
+                                    type="button" data-toggle="collapse" data-target="#collapse_comments_del" id="enquires-style">
+                                      <span style="padding: 0 10px">Deleted Comments</span>
+                                      <span class="badge badge-info badge-pil acc-badge"
+                                            style="margin-right: 10px;">{{ deleted['Comments'] }}</span>
+                            </button>
+                          </h2>
+
+                        </div>
+
+                        {% for comment in del_comments %}
+                          <div id="collapse_comments_del" class="collapse pub-men-options" aria-labelledby="deleted_comments"
+                               data-parent="#del_comments_accordion">
+                          <div id="del-comment-options-popup{{comment.id}}" class="window-clear">
+                            <div class="card-body text-left acc-pub-link" style="z-index: 100">
+                              <p #id="accordian-link">
+                                <h5 class="publishing-style">'Comment by {{ comment.author.display_name }} for comment.poem.title'</h5>
+                                <hr>
+                                {% if comment.comment | length > 35 %}
+                                  {% set content = comment.comment[:35] %}
+                                {% else %}
+                                  {% set content = comment.comment %}
+                                {% endif %}
+                                <h5 class="publishing-style">'{{ content }}'...</h5>
+                                <h3 class="publishing-style">Created on: {{ moment(comment.creation_date).format('LL') }}</h3>
+
+                                <!-- POPUP MENU -->
+                                <span class="pub-men-options-text" id="del-comment-options-popup-text{{ comment.id }}">
+                                  <a href="{{ url_for('dashboard.restore_delete_comment', comment_id=comment.id, restore=True) }}">Restore</a><br>
+                                  <a href="{{ url_for('dashboard.restore_delete_comment', comment_id=comment.id, restore=False) }}">Delete Permanently</a><br>
+                                </span>
+                              </p>
+                            </div>
+                          </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div> <!-- accordian -->
+
+                  {% endif %}
+
+                  {% if not deleted['Users'] and not deleted['Poems'] and not deleted['Comments'] %}
+                    <hr style="margin: 10px 0;">
+                    <h5 style="padding: 0 0 3px 0;">Bin empty</h5>
+                  {% endif %}
+                </div>
+              </div> <!-- publishing-accordian -->
+                <!-- </div> -->
+            </div> <!-- admin-section -->
+
+          </div> <!-- USER-LIST -->
+
+        </div> <!-- row -->
+
+      </div> <!-- (END) DASHBOARD CONTENT CONTAINER -->
+
+    </div> <!-- (END) jumbotron -->
+  </div> <!-- (END) container -->
+
+
+{% endblock %}
+
+<!-- ####### -->
+<!-- PAGE JS -->
+<!-- ####### -->
+{% block script %}
+<script type="text/javascript">
+
+  {% include 'js/user_options_script.js' %}
+  {% include 'js/publishing_admin_script.js' %}
+  {% include 'js/tooltip_button_script.js' %}
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+<!-- ############ -->
+<!-- PAGE CONTENT -->
+<!-- ############ -->
+{% block content %}
+
+<div class="container" id="login-page">
+  <div class="jumbotron login-style">
+    {% if not poem %}
+    <h1>Create a poem:</h1>
+    <hr class="hr-head" style="width: 220px;">
+    {% else %}
+      <h1>Edit - '{{ poem.title }}'
+        {% if poem.poem_image %}
+          <img width="50" height="50" style="margin-left: 5px;"
+               src="{{ url_for('static', filename='poem_pics/' + poem.poem_image) }}">
+        {% else %}
+          <img width="50" height="50" style="margin-left: 5px;"
+               src="{{ poem.user.avatar(256) }}">
+        {% endif %}
+      </h1>
+      <hr class="hr-head" style="width: 220px;">
+    {% endif %}
+
+
+
+    <!---------------------->
+    <!-- CREATE POEM FORM -->
+    <!---------------------->
+
+    <form method="POST" enctype="multipart/form-data"
+          {% if edit and poem %} action="{{ url_for('dashboard.editpoem', poem_id=poem.id) }}" {% endif %}>
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+
+        <p>
+          {% for error in form.title.errors %}
+          <span class="comment-error">{{ error }}</span>
+          {% endfor %}
+          {{ form.title.label(class="user-labels") }}<br>
+          {{ form.title(class="form-control logging-input") }}
+        </p>
+
+        <div class="post-img">
+            <label class="user-labels" for="img-upload" id="on-post-image">
+              <h5 id="img-txt">Add image: <i class="far fa-image"></i>
+                <span id="ul_img_file"></span>
+              </h5>
+              {% if edit %}
+                <h5 id="edit-img-txt">(Leave to keep current image)</h5>
+              {% endif %}
+            </label>
+            {{ form.image(capture="user", accept="image/*", id="img-upload", class="message-img") }}
+        </div>
+
+        <p>
+          {% for error in form.content.errors %}
+          <span class="comment-error">{{ error }}</span>
+          {% endfor %}
+          {{ form.content.label(class="user-labels") }}<br>
+          {{ form.content(rows=12, class="form-control logging-input resize-ta") }}
+        </p>
+
+        {% if not edit %}
+          <p id="checkbox-container">
+            {{ form.publish.label(class="user-labels", id="admin-label") }}
+            {{ form.publish(id="admin-checkbox", style="left: 70px;") }}
+          </p>
+        {% endif %}
+        <p>
+          {{ form.submit_poem(class="btn btn-outline-info", id="login-btn") }}
+        </p>
+      </div>
+    </form>
+
+
+    {% if current_user.is_authenticated and current_user.admin %}
+      <div class="mt-4">
+        <a class="back-to-dash"
+           href="{{ url_for('dashboard.admin') }}">back to dashboard
+          <span>
+            <i class="far fa-hand-point-left"></i>
+          </span>
+        </a>
+      </div>
+    {% endif %}
+  </div> <!-- jumbotron -->
+</div> <!-- container -->
+
+{% endblock %}
+
+
+<!-- ####### -->
+<!-- PAGE JS -->
+<!-- ####### -->
+{% block script %}
+<script type="text/javascript">
+
+  {% include 'js/img_upload_script.js' %}
+  {% include 'js/new_poem_script.js' %}
+
+</script>
+
+{% endblock %}

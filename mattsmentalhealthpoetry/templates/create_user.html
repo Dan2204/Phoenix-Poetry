@@ -1,0 +1,96 @@
+{% include 'base.html' %}
+
+{% block content %}
+
+  <div class="container" id="login-page">
+    <div class="jumbotron login-style">
+    {% if not edit %}
+      {% if current_user.is_authenticated and current_user.admin %}
+        <h4>Create a new user:</h4>
+        <hr style="width: 270px">
+      {% else %}
+        <h4>Register:</h4>
+        <hr style="width: 130px">
+      {% endif %}
+    {% elif current_user.admin %}
+      <h4>Edit: {{ user.name }}</h4>
+      <hr style="width: 290px">
+    {% else %}
+      <h4>Edit details</h4>
+      <hr style="width: 158px">
+    {% endif %}
+
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        <p>
+          {% for error in form.name.errors %}
+            <span class="comment-error">{{ error }}</span>
+          {% endfor %}
+          {{ form.name.label(class="user-labels") }}<br>
+          {{ form.name(class="form-control logging-input") }}
+        </p>
+        <p>
+          {% for error in form.email.errors %}
+            <span class="comment-error">{{ error }}</span>
+          {% endfor %}
+          {{ form.email.label(class="user-labels") }}<br>
+          {{ form.email(class="form-control logging-input") }}
+        </p>
+        {% if not edit %}
+          <p>
+            {% for error in form.password.errors %}
+              <span class="comment-error">{{ error }}</span>
+            {% endfor %}
+            {{ form.password.label(class="user-labels") }}<br>
+            {{ form.password(class="form-control logging-input") }}
+          </p>
+          <p>
+            {% for error in form.password_conf.errors %}
+              <span class="comment-error">{{ error }}</span>
+            {% endfor %}
+            {{ form.password_conf.label(class="user-labels") }}<br>
+            {{ form.password_conf(class="form-control logging-input") }}
+          </p>
+          {% if current_user and current_user.admin %}
+            <p id="checkbox-container">
+              {{ form.admin.label(class="user-labels", id="admin-label") }}
+              {{ form.admin(id="admin-checkbox") }}
+            </p>
+          {% endif %}
+        {% endif %}
+        <p style="margin-bottom: 20px;">
+        {{ form.submit_register(class="btn btn-outline-info", id="login-btn") }}
+      </p>
+      </div>
+    </form>
+
+    {% if not current_user.is_authenticated %}
+      <p id="signup-register">Already signed up? <span><a href="{{ url_for('users.login') }}">Log in here</a></span></p>
+    {% endif %}
+
+    {% if current_user.is_authenticated and current_user.admin %}
+      <a class="back-to-dash"
+         href="{{ url_for('dashboard.admin') }}">back to dashboard
+        <span>
+          <i class="far fa-hand-point-left"></i>
+        </span>
+      </a>
+    {% endif %}
+
+  </div>
+
+{% endblock %}
+
+
+<!-- ####### -->
+<!-- PAGE JS -->
+<!-- ####### -->
+{% block script %}
+<script type="text/javascript">
+
+  {% include 'js/logging_script.js' %}
+
+</script>
+
+{% endblock %}

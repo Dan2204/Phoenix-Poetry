@@ -1,0 +1,219 @@
+/* HOME CSS */
+
+#login-page .login-style {
+  border: 1px solid var(--color-secondaryT);
+  max-width: 550px;
+  margin: 20px auto;
+}
+
+#login-page .login-style h1,
+#login-page .login-style h4 {
+  color: var(--text-color);
+  font-size: 2rem;
+}
+
+#login-page .login-style h3 {
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+
+#login-page .login-style hr {
+  border-bottom: 5px solid var(--color-secondary);
+  width: 200px;
+  margin-left: 0;
+  margin-bottom: 25px;
+}
+
+#login-page #user-list-hr {
+  border-bottom: 1px solid var(--color-secondary);
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+#login-page #user-list .card-header,
+#login-page #user-list .card-body {
+  border: none;
+}
+
+.login-style form p {
+  position: relative;
+}
+
+.comment-error {
+  color: rgb(198, 47, 47);
+  text-shadow: 0 0 1px #555;
+  font-size: .9rem;
+  vertical-align: text-top;
+  text-align: right;
+  position: absolute;
+  right: 20px;
+  top: 38px;
+  letter-spacing: 1px;
+}
+
+.user-labels {
+  color: var(--text-color);
+  /* padding-left: 10px; */
+}
+
+.logging-input:focus {
+  background-color: var(--color-third);
+  color: var(--text-color);
+}
+
+.logging-input:active {
+  background-color: #3A3B3C;
+  color: var(--text-color);
+}
+
+.logging-input {
+  height: 30px;
+  background-color: #3A3B3C;
+  border: 1px solid var(--color-secondary);
+  color: var(--text-color);
+  border-radius: 10px;
+}
+
+.login-style #login-btn {
+  width: 30%;
+  margin-top: 10px;
+  padding: 5px 0;
+  font-size: .9rem;
+  border-radius: 10px;
+  color: #aaa;
+  background-color: var(--bg-display);
+  box-shadow: 0 0 8px var(--color-secondary);
+  line-height: 18px;
+}
+
+.login-style #login-btn-lg {
+  width: 50%;
+  margin-top: 10px;
+  padding: 5px 0;
+  font-size: .9rem;
+  border-radius: 10px;
+  color: #aaa;
+  background-color: var(--bg-display);
+  box-shadow: 0 0 8px var(--color-secondary);
+  line-height: 18px;
+}
+
+.login-style #login-btn:hover,
+.login-style #login-btn-lg:hover {
+  text-shadow: 0 0 8px #000;
+  letter-spacing: 1.2px;
+  color: var(--text-color);
+  background-color: var(--color-secondary);
+  box-shadow: none;
+  box-shadow: 0 0 4px #fff;
+  border: 1px solid #fff;
+}
+
+.login-style #login-btn:focus,
+.login-style #login-btn-lg:focus {
+  color: #aaa;
+  background-color: var(--bg-display);
+  box-shadow: none;
+  letter-spacing: normal;
+}
+
+.login-style #signup-register {
+  color: var(--text-color);
+  font-size: .8rem;
+  padding-top: 10px;
+}
+
+.login-style #signup-register a {
+  color: var(--color-secondary);
+  padding-left: 5px;
+}
+
+.login-style #admin-label {
+  margin-right: 10px;
+}
+
+.login-style #checkbox-container {
+  position: relative;
+  padding-top: 10px;
+}
+
+/********************/
+/* CHECKBOX STYLING */
+/********************/
+
+.login-style #admin-checkbox {
+  -webkit-appearance: none;
+  background-color: var(--color-third);
+  border: 1px solid var(--color-secondary);
+  border-radius: 3px;
+  box-shadow: 0 1px 2px var(--color-secondaryT), inset 0px -15px 10px -12px var(--color-secondaryT);
+  padding: 9px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  left: 105px;
+}
+
+.login-style #admin-checkbox:active,
+.login-style #admin-checkbox:checked:active {
+  outline: none;
+  box-shadow: 0 1px 2px var(--color-secondaryT), inset 0px 1px 3px var(--color-secondaryT);
+}
+
+.login-style #admin-checkbox:checked {
+  background-color: var(--color-secondaryT);
+	border: 1px solid var(--color-secondary);
+	box-shadow: 0 1px 2px var(--color-secondaryT), inset 0px -15px 10px -12px var(--color-secondaryT), inset 15px 10px -12px var(--color-secondaryT);
+	color: #99a1a7;
+}
+
+.login-style #admin-checkbox:checked:after {
+  content: '\2714';
+  font-size: 14px;
+  position: absolute;
+  top: 0px;
+  left: 3px;
+  color: #99a1a7;
+
+}
+
+
+/*****************/
+/* MEDIA QUERIES */
+/*****************/
+
+@media only screen and (max-width: 768px) {
+
+  .hr-head {
+    margin: 0 auto 20px auto !important;
+    /* border-bottom: 5px solid red !important; */
+  }
+
+  #login-page .login-style h1{
+    text-align: center;
+  }
+
+  #login-page .login-style h3 {
+    margin-left: 20%;
+    /* color: blue; */
+  }
+}
+
+
+@media only screen and (max-width: 565px) {
+
+  #login-page .login-style h3 {
+    margin-left: 17%;
+    /* color: yellow; */
+  }
+
+
+@media only screen and (max-width: 488px) {
+
+  #login-page .login-style h3 {
+    margin-left: 13%;
+    /* color: red; */
+  }
+
+}

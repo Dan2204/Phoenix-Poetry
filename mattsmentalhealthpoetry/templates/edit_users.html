@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="container" id="login-page">
+    <div class="jumbotron login-style" style="max-width: 800px;">
+
+        <h1>Edit Users</h1>
+        <hr class="hr-head" style="width: 150px;">
+        {% if user_list %}
+          <h4 class="">Current User List ({{ user_list | length - 1 }}):</h4>
+        {% else %}
+          <h4>No Users</h4>
+        {% endif %}
+
+
+
+            {% include '_current_user_list.html' %}
+
+
+
+      <a class="back-to-dash"
+         href="{{ url_for('dashboard.admin') }}">back to dashboard
+        <span>
+          <i class="far fa-hand-point-left"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+
+
+
+{% endblock %}
+
+<!-- ####### -->
+<!-- PAGE JS -->
+<!-- ####### -->
+{% block script %}
+<script type="text/javascript">
+
+  {% include 'js/user_options_script.js' %}
+
+</script>
+
+{% endblock %}

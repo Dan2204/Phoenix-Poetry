@@ -1,0 +1,66 @@
+<!--------------->
+<!-- USER LIST -->
+<!--------------->
+
+{% if user_list %}
+  <div class="user-list-container user-list-style">
+    <div class="row">
+    {% for user in user_list %}
+      {% if user.display_name != "@dan-lucas" %}
+        <div class="user-list">
+            <div class="card user-card">
+
+              <!-- USER HEADER -->
+              <div class="card-header">
+                <a style="font-weight: bold;">{{ user.name }}
+                  {% if user.admin %}
+                    <span style="font-size: 10px">- Admin</span>
+                  {% endif %}
+                </a>
+
+                <!-- ADD OPTIONS ICON TO USER HEADER -->
+                <span style="float: right;" class="">
+                  <p style="cursor: pointer" class="pub-men-options member-style"
+                     id="user-select-popup{{ user.id }}"><i class="fas fa-user-cog"></i>
+
+                      <!-- START OF OPTION MENU -->
+                      <span class="pub-men-options-text pop-menu" id="user-select-popup-text{{ user.id }}">
+                        <a href="{{ url_for('users.edit_user', user_id=user.id) }}">Edit</a><br>
+                        <a href="{{ url_for('users.change_password', user_id=user.id) }}">Change Password</a><br>
+                        {% if not user.admin %}
+                          <a href="{{ url_for('users.toggle_admin', user_id=user.id) }}">Make Admin</a><br>
+                        {% else %}
+                          {% if user.display_name != "@matt-lucas" %}
+                            <a href="{{ url_for('users.toggle_admin', user_id=user.id) }}">Remove from Admin</a><br>
+                          {% endif %}
+                        {% endif %}
+                        {% if user.display_name != "@matt-lucas" and not user.admin %}
+                          <a href="{{ url_for('users.delete_user', user_id=user.id) }}">Send to bin</a><br>
+                        {% endif %}
+                      </span> <!-- (END) START OF OPTION MENU -->
+
+                  </p>
+                </span>
+                <hr id="user-list-hr">
+              </div> <!-- (END) USER HEADER -->
+
+              <div class="card-body" id="userlist-users">
+                <p class="">Display name: <span style="font-weight: normal">{{ user.display_name }}</span></p>
+                <p class="">Email: <span style="font-weight: normal">{{ user.email }}</span></p>
+                <p class="">User since: <span style="font-weight: normal">{{ moment(user.creation_date).format('LL') }}</span></p>
+                <p class="">Comments: <span style="font-weight: normal">{{ user.comments | length }}</span></p>
+                {% if user.active %}
+                  <p class="">User: <span style="font-weight: normal">active</span></p>
+                {% else %}
+                  <p class="">User: <span style="font-weight: normal">in the bin</span></p>
+                {% endif %}
+              </div>
+
+            </div> <!-- CARD -->
+          </div> <!-- USER-LIST -->
+
+        {% endif %}
+      {% endfor %}
+    </div> <!-- ROW -->
+  </div> <!-- USER-LIST-CONTAINER -->
+{% endif %}

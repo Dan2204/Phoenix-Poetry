@@ -1,0 +1,647 @@
+/*****************/
+/* CSS DASHBOARD */
+/*****************/
+
+
+.jumbotron {
+  padding: 32px 32px;
+  /* border: 1px solid green; */
+}
+
+/* .user-list-container  {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid red;
+} */
+
+#dash-page .dash-style {
+  background-color: var(--bg-display);
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+#dash-head {
+  color: var(--text-color);
+  padding: 10px 30px 10px 55px;
+}
+
+.hr-head {
+  border-top: 3px solid var(--color-secondary);
+  border-bottom: 1px solid #fff;
+  margin-left: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 15px var(--color-secondaryT);
+}
+
+.hr-head-thin {
+  border-bottom: 1px solid var(--color-secondary);
+  margin-left: 0;
+}
+
+.user-list-dash #card-width {
+  min-width: 380px;
+  margin: 0 auto 5px auto;
+}
+
+.admin-section-c {
+  border: 1px solid var(--color-secondary);
+  text-align: center;
+  background-color: var(--color-third);
+  padding: 10px 0 20px 0;
+  border-radius: 10px;
+  max-width: 450px;
+  /* padding-bottom: 10px; */
+}
+
+.admin-section-c .card {
+  background-color: var(--color-third);
+  /* background-color: blue; */
+  border-radius: 15px;
+  border: none;
+}
+
+#poems-admin {
+  background-color: var(--color-third);
+}
+
+#admin-icon {
+  color: var(--text-color);
+  position: relative;
+  font-size: 1.6rem;
+  width: 95%;
+}
+
+#admin-icon a {
+  margin-left: 30px;
+  padding: 0 0px;
+  border-radius: 5px;
+  background-color: var(--bg-display);
+  box-shadow: 0 0 3px #ccc;
+  border: 1px solid var(--color-secondary);
+  /* color: var(--text-color); */
+  color: var(--color-third);
+  position: absolute;
+  top: 0px;
+  right: 40px;
+}
+
+.admin-section-c i {
+  color: rgba(23, 162, 184, 0.5);
+  padding: 2px 7px;
+}
+
+#admin-icon a:hover,
+#admin-icon a i:hover {
+  background-color: var(--color-secondaryT);
+  color: var(--color-secondary);
+}
+
+#admin-icon a:hover {
+  background-color: var(--bg-display);
+  box-shadow: 0 0 8px #fff;
+}
+
+#admin-icon a:active {
+  box-shadow: none;
+  background-color: var(--color-secondaryT);
+  color: var(--color-secondary);
+}
+
+
+/************/
+/* COMMENTS */
+/************/
+
+#comments_admin .card {
+  font-size: .8rem;
+  /* border-radius: 10px; */
+  /* border: 1px solid #fff; */
+  border-radius: 0;
+  margin-bottom: 0;
+  /* background-color: #000; */
+}
+
+#comments_admin .card-header,
+#comments_admin .card-body,
+#comments_admin .card-footer {
+  padding: 5px 0 5px 5px;
+  text-align: left;
+  border: 1px solid var(--color-secondary);
+  color: var(--text-color);
+  /* background-color: var(--color-secondaryT); */
+}
+
+#comments_admin p {
+  margin: 0;
+}
+
+.card-title {
+  background-color: #000;
+}
+
+#comments_admin .card h3 {
+  color: var(--text-color);
+}
+
+#comments-footer {
+  border-top: 1px solid #555;
+}
+
+#comments_admin #comment-title{
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+#latest_comments .card {
+  background-color: var(--color-third);
+  color: var(--text-color);
+  border: 1px solid var(--color-secondaryT);
+}
+
+#latest_comments #comment-approve {
+  color: #0da815;
+}
+
+#latest_comments #comment-deny {
+  color: #c91a1a;
+}
+
+#latest_comments #comment-approve:hover,
+#latest_comments #comment-deny:hover {
+  text-decoration: none;
+  text-shadow: 0 0 2px #000;
+  color: #fff;
+}
+
+#latest_comments .body-content {
+  /* margin-left: auto;
+  margin-right: auto; */
+  /* max-width: 350px; */
+}
+
+/****************/
+/* END COMMENTS */
+/****************/
+
+.accordian .collapse {
+  border: 1px solid #aaa;
+  box-shadow: 0 0 8px #555;
+}
+
+.publishing-style {
+  font-size: .8rem;
+  color: #aaa;
+}
+
+.acc-pub-link p,
+.acc-pub-link {
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.acc-pub-link {
+  padding-left: 8%;
+  max-width: 305px;
+  border: 1px solid var(--color-secondary);
+  margin: 5px 0;
+}
+
+.acc-pub-link:hover {
+  background-color: rgba(0, 10, 170, 0.1);
+  box-shadow: 0 0 18px #333;
+  border: 1px solid rgba(219, 46, 46, 1);
+}
+
+.acc-pub-link #acc-pub-content {
+  padding-left: 25px;
+}
+
+.accordion img {
+  width: 170%;
+  height: 60%;
+  margin: 18px 5px 18px 0;
+  padding: 0 0 0 0;
+  border: 1px solid #333;
+}
+
+/* .accordion-poem-button button span {
+  background-color: green;
+} */
+
+.publishing-accordian .card-header {
+  background-color: #eee;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 5px #000;
+  margin: 5px;
+}
+
+.main-card .card-header {
+  background-color: var(--color-secondaryT);
+  box-shadow: none;
+  border: none;
+}
+
+.main-card .card-header button .acc-badge {
+  font-size: .9rem;
+  color: var(--color-third);
+  padding-bottom: 1px;
+}
+
+.publishing-accordian button {
+  background-color: var(--color-third);
+  color: var(--text-color);
+  /* box-shadow: 0px 0px 8px #888; */
+}
+
+.publishing-accordian button:hover {
+  text-decoration: none;
+  background-color: var(--color-third);
+  color: #000;
+  text-shadow: 0 0 10px var(--text-color);
+  letter-spacing: 1px;
+  box-shadow: 0px 0px 8px #888;
+}
+
+.publishing-accordian button:focus {
+  text-decoration: none;
+  /* box-shadow: none; */
+  box-shadow: 0px 0px 8px #333;
+
+}
+
+#admin-usr-options {
+  padding: 10px 0;
+}
+
+#admin-usr-options a {
+  color: #aaa;
+  padding: 5px 0;
+  font-size: 1.25rem;
+}
+
+#admin-usr-options a:hover {
+  text-decoration: none;
+  text-shadow: 0 0 10px var(--text-color);
+  color: #000;
+}
+
+#admin-usr-options a:focus {
+  text-shadow: none;
+  color: #555;
+  text-shadow: 0 0 10px #000;
+}
+
+#comments-view-all {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.back-to-dash {
+  color: #aaa;
+  padding: 15px 0 0 0;
+  font-size: 1.25rem;
+  magin-top: 50px;
+}
+
+.back-to-dash:hover {
+  text-decoration: none;
+  text-shadow: 0 0 10px var(--text-color);
+  color: #000;
+}
+
+.back-to-dash:focus {
+  text-shadow: none;
+  color: #555;
+  text-shadow: 0 0 10px #000;
+}
+
+#comment-back-link a {
+  color: #888;
+}
+
+#comment-back-link a:hover {
+  text-decoration: none;
+  color: #aaa;
+}
+
+.user-list,
+.user-list-dash {
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-list-container {
+  display: inline-block;
+  align-items: center;
+}
+
+.user-list .user-card,
+.user-list-dash .user-card {
+  border: 2px solid var(--color-secondary);
+}
+
+.user-list .card,
+.user-list .user-card {
+  min-width: 300px;
+  background-color: var(--color-third);
+  color: var(--text-color);
+}
+
+.user-list-style .card-body p {
+  font-weight: bold;
+  margin: 0;
+}
+
+#userlist-users p {
+  padding-bottom: 5px;
+}
+
+
+/*************/
+/* POPUP CSS */
+/*************/
+
+.pub-men-options {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+}
+
+.pub-men-options .pub-men-options-text {
+  display: none;
+  /* display: block; */
+  width: 170px;
+  background-color: var(--bg-display);
+  color: #fff;
+  text-align: left;
+  border: 4px solid var(--color-secondaryT);
+  border-radius: 15px;
+  padding: 8px 8px 8px 12px;
+  position: absolute;
+  z-index: 100;
+  bottom: 20%;
+  left: 40%;
+  margin-left: -85px;
+  box-shadow: 0 0 10px #000;
+}
+
+.pub-men-options .pub-men-options-text a {
+  color: #fff;
+}
+
+.pub-men-options .pub-men-options-text a:hover {
+  text-decoration: none;
+  text-shadow: 0 0 6px #fff;
+  color: #000;
+}
+
+.pub-men-options .pub-men-options-text a:focus {
+  text-shadow: 0 0 10px #ccc;
+  color: #888;
+}
+
+.pub-men-options .pub-men-options p {
+  color: #fff;
+}
+
+/************/
+/* TOOLTIPS */
+/************/
+
+.comment_tooltip_click,
+.comment_tooltip_hover {
+  position: relative;
+  color: var(--color-secondary);
+  display: inline-block;
+  padding: 0 0 0 0;
+  margin: 0;
+  padding-right: 10px;
+  text-align: right;
+  /* float: right; */
+  width: 20%;
+}
+
+.comment_tooltip_click .comment_tt_text,
+.comment_tooltip_hover .comment_tt_text {
+  visibility: hidden;
+  width: 300px;
+  background-color: var(--bg-color);
+  border: 3px solid var(--color-secondaryT);
+  color: var(--text-color);
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 10px;
+  padding: 5px 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: -50px;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.comment_tooltip_click .comment_tt_text::after,
+.comment_tooltip_hover .comment_tt_text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 219px;
+  margin-left: -5px;
+  border-width: 5px;
+  /* border-style: solid; */
+  /* border-color: #555 transparent transparent transparent; */
+}
+
+.comment_tooltip_hover:hover .comment_tt_text {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/*****************/
+/* END POPUP CSS */
+/*****************/
+
+
+/* .pop-menu {
+  top: 100%;
+  left: 40%;
+  margin-left: -150px;
+  height: 120px;
+} */
+
+
+.accordion .col-sm-2 {
+  padding: 0 15px 0 0;
+  /* padding-left: 0; */
+}
+
+#title-small {
+  font-weight: bolder;
+}
+
+
+/*****************/
+/* MEDIA QUERIES */
+/*****************/
+
+@media only screen and (max-width: 992px) {
+
+  #dash-head {
+    text-align: center;
+  }
+
+  .hr-head {
+    margin: 0 auto;
+  }
+
+  .user-list-dash #card-width {
+    min-width: 380px;
+    margin-bottom: 5px;
+  }
+
+  .admin-section-c {
+    width: 800px;
+  }
+}
+
+
+
+@media only screen and (max-width: 1187px) {
+
+  #admin-icon {
+    font-size: 1.5rem;
+  }
+}
+
+
+/* @media only screen and (max-width: 635px) {
+
+  .accordion img {
+    width: 60%;
+    height: 40%;
+    margin: 0 0 18px 0;
+    border: 1px solid #333;
+  }
+
+  .accordion .col-sm-2 {
+    max-width: 50%;
+    height: 10%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .acc-pub-link {
+    padding-left: 10%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+  }
+} */
+
+
+@media only screen and (max-width: 600px) {
+
+  .accordion .col-sm-2 {
+    padding: 0 25px 0 0;
+    height: 50%;
+    width: 100%;
+    /* align-items: baseline; */
+    justify-content: center;
+  }
+
+  .accordion img {
+    width: 100%;
+    height: 100%;
+    margin: 0 0 18px 0;
+    padding: 0 0 0 0;
+    border: 1px solid #333;
+  }
+
+  .comment_tooltip_click .comment_tt_text,
+  .comment_tooltip_hover .comment_tt_text {
+    width: 195px;
+    font-size: 1rem;
+    bottom: 125%;
+    text-align: left;
+    right: 15%;
+    margin-left: -20px;
+    padding-left: 10px;
+  }
+
+  /* .comment_tooltip_click .comment_tt_text::after,
+  .comment_tooltip_hover .comment_tt_text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    right: 10%;
+    margin-left: -30px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+    border-color: #fff;
+  }
+} */
+
+@media only screen and (max-width: 800px) {
+
+  .admin-section-c {
+    max-width: 380px;
+  }
+
+  .user-list-dash #card-width {
+    min-width: 360px;
+    margin-bottom: 5px;
+  }
+
+}
+
+@media only screen and (min-width: 950px) {
+
+  .user-list-container  {
+    padding: 10px 10px;
+  }
+
+  .user-list {
+    max-width: 300px;
+  }
+
+
+}
+
+@media only screen and (min-width: 1080px) {
+
+  .user-list-container  {
+    padding: 10px 25px;
+    border: 10px solid yellow !important;
+  }
+
+  .user-list #card-width {
+    min-width: 400px;
+    margin-bottom: 5px;
+  }
+
+
+}
+
+@media only screen and (min-width: 1170px) {
+
+  .user-list-container  {
+    padding: 10px 40px;
+    border: 10px solid green !important;
+  }
+}
+
+@media only screen and (min-width: 1325px) {
+
+  .user-list-container  {
+    padding: 10px 60px;
+    border: 10px solid blue !important;
+  }
+}
