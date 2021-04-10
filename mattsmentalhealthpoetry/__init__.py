@@ -11,7 +11,18 @@ app = Flask(__name__)
 #---- CONFIGURE ----
 #-------------------
 
-app.config.from_object(Config)
+# app.config.from_object(Config)
+ENV = 'dev'
+
+if ENV == 'dev':
+    app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:prologe@localhost/phoenix-poetry'
+else:
+    app.debug = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 moment = Moment(app)
 
 
