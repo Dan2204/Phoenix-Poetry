@@ -1,4 +1,4 @@
-from config import Config
+# from config import Config
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -22,6 +22,7 @@ else:
     app.config['SQLALCHEMY_DATABASE_URI'] = ''
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = "@@!$£%@$£^@£"
 
 moment = Moment(app)
 

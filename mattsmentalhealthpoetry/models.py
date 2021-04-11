@@ -60,7 +60,7 @@ class Poem(db.Model):
     title = db.Column(db.String(64), nullable=False)
     creation_date = db.Column(db.DateTime, default=datetime.utcnow)
     last_modified = db.Column(db.DateTime, default=datetime.utcnow)
-    content = db.Column(db.Text(1500), nullable=False, unique=True)
+    content = db.Column(db.Text, nullable=False, unique=True)
     poem_image = db.Column(db.String(64), nullable=False, default='')
     published = db.Column(db.Boolean, default=False)
     active = db.Column(db.Boolean, nullable=False, default=True)

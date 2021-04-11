@@ -13,34 +13,46 @@ from flask_login import current_user, login_required
 @bp.route('/index/<int:poem_id>', methods=['GET', 'POST'])
 def home(poem_id=None):
 
+
+    ###################
+    # Check For Users #
+    ###################
     user_check = User.query.all()
     if not user_check or (len(user_check) == 1
-                      and user_check[0].name == "Dan Lucas"):
+                      and user_check[0].name == "dan lucas"):
         return redirect(url_for('users.create_user'))
 
+    # Assign form #
     form = CommentForm()
 
+    # Assign current users poems if loggged on and poems present and published #
     if current_user.is_authenticated and current_user.poems:
-        poems = current_user.poems
+        poems = [poem for poem in current_user.poems if poem.published]
     else:
-        poems = Poem.query.filter_by(published=True).order_by(Poem.creation_date).all()
-
-    print(poems)
+        poems = Poem.query.filter_by(published=True).order_by(
+                                                       Poem.creation_date).all()
 
     if poem_id is not None:
         view_poem = [poem for poem in poems if poem.id == poem_id]
         if view_poem:
             view_poem = view_poem[0]
+            comments = [comment for comment in view_poem.comments
+                                if poems and comment.approve and comment.active]
         else:
             flash("Invalid Poem")
-            view_poem = poems[0]
+            view_poem = poems[0] if poems else poems
+
     else:
-        view_poem = poems[0]
+        if poems:
+            view_poem = poems[0]
+            comments = view_poem.comments
+        else:
+            view_poem = poems
+            comments = []
 
 
-    comments = [comment for comment in view_poem.comments
-                        if comment.approve and comment.active]
 
+    num_comments = len(comments) if comments else 0
 
     if form.validate_on_submit() and poem_id is not None:
         poem = Poem.query.filter_by(id=poem_id).first()
@@ -58,7 +70,7 @@ def home(poem_id=None):
 
     return render_template('home.html', title="Home", poems=poems,
                             form=form, poem=view_poem,
-                            num_comments=len(comments), select=poem_id)
+                            num_comments=num_comments, select=poem_id)
 
 
 

@@ -338,11 +338,13 @@
 .user-list-container {
   display: inline-block;
   align-items: center;
+  justify-content: space-around;
 }
 
 .user-list .user-card,
 .user-list-dash .user-card {
   border: 2px solid var(--color-secondary);
+  /* margin-left: 5px; */
 }
 
 .user-list .card,

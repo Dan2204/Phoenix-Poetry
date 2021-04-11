@@ -13,8 +13,10 @@
       <!-- SECTION HEAD -->
       <div class="section-head">
         {% if poem %}
-          <h1>{% if not select %}Latest poem...{% else %}Selected...{% endif %}
-            <a href="#scroll-to-other-poems" id="poem-list-tag">[Poem List]</a>
+          <h1>{% if not select %}Latest poem...{% else %}Selected [{{ poem.title }}]{% endif %}
+            {% if poems | length > 1 %}
+              <a href="#scroll-to-other-poems" id="poem-list-tag">[Poem List]</a>
+            {% endif %}
           </h1>
         {% else %}
           <h1>No Poems Available</h1>
@@ -22,6 +24,7 @@
       </div> <!-- SECTION HEAD -->
 
       <div class="row">
+        {% if poem %}
         <div class="col-lg-6">
 
           <!-- POEM CONTENT -->
@@ -149,11 +152,13 @@
           </div> <!-- POEM CONTENT -->
 
         </div>
+        {% endif %}
+        {% if poems | length > 1 %}
         <div class="col-lg-6">
 
           <div id="scroll-to-other-poems">
-            <div id="dash-head">
-              <h2 id="other-poems" class="mt-5">Poem List</h2>
+            <div id="dash-head" class="mb-3">
+              <h2 id="other-poems">Poem List</h2>
               <hr class="hr-head" style="width: 150px;">
             </div>
             <div id="other-poem-container">
@@ -175,6 +180,7 @@
                     <!-- </p> -->
                     <!-- <p>Created by: {{ other_poem.user.name }}</p> -->
                     <p>Created on: {{ moment(other_poem.creation_date).format('LL') }}</p>
+                    <p>Published: {{ other_poem.published }}</p>
                     <p>Comments (<span id="num-comments{{ other_poem.id }}"></span>)</p>
                   </a>
                 </div>
@@ -184,6 +190,7 @@
             </div>
           </div> <!-- scroll-to-other-poems -->
         </div>
+        {% endif %}
       </div>
 
     </div> <!-- poem-container -->
