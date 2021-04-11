@@ -582,14 +582,14 @@
     }
 
     .admin-section-c {
-      max-width: 300px;
+      max-width: 295px;
     }
 
     #admin-icon {
       /* color: var(--text-color); */
       position: relative;
       font-size: 1.2rem;
-      width: 300px;
+      width: 295px;
     }
 
     #admin-icon a {
@@ -603,7 +603,7 @@
       /* color: var(--color-third); */
       position: absolute;
       top: 0px;
-      right: 5px;
+      right: 15px;
     }
   }
 
