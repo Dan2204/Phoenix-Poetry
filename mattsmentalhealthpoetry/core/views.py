@@ -19,7 +19,7 @@ def home(poem_id=None):
     ###################
     user_check = User.query.all()
     if not user_check or (len(user_check) == 1
-                      and user_check[0].name == "dan lucas"):
+                      and user_check[0].name == "Dan Lucas"):
         return redirect(url_for('users.create_user'))
 
     # Assign form #
