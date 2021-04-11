@@ -83,29 +83,29 @@
                 <!-- COMMENTS BODY (LIST) -->
                 <div class="card-body" id="comments-body">
                   {% for comment in poem.comments | sort(attribute='creation_date', reverse=True) %}
-                  {% if comment.approve and comment.active %}
-                  {% if comment.comment | length * 5 < 200 %}
-                    {% set comment_width = 200 %}
-                  {% elif comment.comment | length * 5 > 390 %}
-                    {% set comment_width = 390 %}
-                  {% else %}
-                    {% set comment_width = comment.comment | length * 5 - 30 %}
-                  {% endif %}
-                    <div class="poem-comment" style="width: {{ comment_width }}px;">
-                      <a class="comment-author">{{ comment.author.display_name }}</a>
-                      {% if current_user.admin %}
-                        <span class="comment-trash" style="float: right; padding-bottom: 2px;">
-                          <a href="{{ url_for('core.delete_comment', comment_id=comment.id) }}"
-                            class="message-option-icon">
-                              <i class="fas fa-trash-alt"></i>
-                          </a>
-                        </span>
+                    {% if comment.approve and comment.active %}
+                      {% if comment.comment | length * 5 < 200 %}
+                        {% set comment_width = 200 %}
+                      {% elif comment.comment | length * 5 > 390 %}
+                        {% set comment_width = 390 %}
+                      {% else %}
+                        {% set comment_width = comment.comment | length * 5 - 30 %}
                       {% endif %}
-                      <p class="comment-comment">{{ comment.comment }}</p>
-                      <p class="comment-date">{{ moment(comment.creation_date).fromNow() }}</p>
-                      <!-- <p class="comment-comment">width: {{ comment_width }}</p> -->
-                    </div>
-                  {% endif %}
+                      <div class="poem-comment" style="width: {{ comment_width }}px;">
+                        <a class="comment-author">{{ comment.author.display_name }}</a>
+                        {% if current_user.admin %}
+                          <span class="comment-trash" style="float: right; padding-bottom: 2px;">
+                            <a href="{{ url_for('core.delete_comment', comment_id=comment.id) }}"
+                              class="message-option-icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                          </span>
+                        {% endif %}
+                        <p class="comment-comment">{{ comment.comment }}</p>
+                        <p class="comment-date">{{ moment(comment.creation_date).fromNow() }}</p>
+                        <!-- <p class="comment-comment">width: {{ comment_width }}</p> -->
+                      </div>
+                    {% endif %}
                   {% endfor %}
                 </div> <!-- COMMENTS BODY (LIST) -->
 

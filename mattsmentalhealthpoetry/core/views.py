@@ -45,7 +45,8 @@ def home(poem_id=None):
     else:
         if poems:
             view_poem = poems[0]
-            comments = view_poem.comments
+            comments = [comment for comment in view_poem.comments
+                                if poems and comment.approve and comment.active]
         else:
             view_poem = poems
             comments = []
