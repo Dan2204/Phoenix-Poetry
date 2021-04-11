@@ -12,7 +12,7 @@ app = Flask(__name__)
 #-------------------
 
 # app.config.from_object(Config)
-ENV = 'dev'
+ENV = 'production'
 
 if ENV == 'dev':
     app.debug = True
