@@ -19,6 +19,10 @@ body {
   font-family: 'lato', sans-serif;
 }
 
+nav .container {
+  padding-left: 50px;
+}
+
 nav {
   background-color: #333;
   color: var(--text-color);
@@ -77,4 +81,11 @@ nav .navbar-toggler .collapse {
 .jumbotron {
   background-color: var(--bg-display);
   margin: 0;
+}
+
+@media only screen and (max-width: 450px) {
+
+  nav .container {
+    /* padding-left: 50px; */
+  }
 }
