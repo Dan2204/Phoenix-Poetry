@@ -493,6 +493,18 @@
 /* MEDIA QUERIES */
 /*****************/
 
+
+/*************/
+/* Max Width */
+
+@media only screen and (max-width: 1187px) {
+
+  #admin-icon {
+    font-size: 1.5rem;
+  }
+}
+
+
 @media only screen and (max-width: 992px) {
 
   #dash-head {
@@ -514,37 +526,17 @@
 }
 
 
+@media only screen and (max-width: 800px) {
 
-@media only screen and (max-width: 1187px) {
+  .admin-section-c {
+    max-width: 380px;
+  }
 
-  #admin-icon {
-    font-size: 1.5rem;
+  .user-list-dash #card-width {
+    min-width: 360px;
+    margin-bottom: 5px;
   }
 }
-
-
-/* @media only screen and (max-width: 635px) {
-
-  .accordion img {
-    width: 60%;
-    height: 40%;
-    margin: 0 0 18px 0;
-    border: 1px solid #333;
-  }
-
-  .accordion .col-sm-2 {
-    max-width: 50%;
-    height: 10%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .acc-pub-link {
-    padding-left: 10%;
-    max-width: 300px;
-    border: 1px solid #ccc;
-  }
-} */
 
 
 @media only screen and (max-width: 600px) {
@@ -558,7 +550,7 @@
   }
 
   .user-list-dash #card-width {
-    min-width: 200px;
+    min-width: 300px;
     margin-bottom: 5px;
   }
 
@@ -581,18 +573,19 @@
     padding-left: 10px;
   }
 
-@media only screen and (max-width: 800px) {
 
-  .admin-section-c {
-    max-width: 380px;
+  @media only screen and (max-width: 600px) {
+
+    .user-list-dash #card-width {
+      max-width: 200px;
+      margin-bottom: 5px;
+    }
   }
 
-  .user-list-dash #card-width {
-    min-width: 360px;
-    margin-bottom: 5px;
-  }
 
-}
+
+  /*************/
+  /* Min Width */
 
 @media only screen and (min-width: 950px) {
 
@@ -603,8 +596,8 @@
   .user-list {
     max-width: 300px;
   }
-
 }
+
 
 @media only screen and (min-width: 1080px) {
 
@@ -617,9 +610,8 @@
     min-width: 400px;
     margin-bottom: 5px;
   }
-
-
 }
+
 
 @media only screen and (min-width: 1170px) {
 
@@ -628,6 +620,7 @@
     /* border: 10px solid green !important; */
   }
 }
+
 
 @media only screen and (min-width: 1325px) {
 
