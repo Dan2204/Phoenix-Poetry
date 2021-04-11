@@ -1,0 +1,6 @@
+
+migrations/
+__pycache__/
+old_code/
+/.env
+/data.db
