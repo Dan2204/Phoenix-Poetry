@@ -574,22 +574,22 @@
   }
 
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 400px) {
 
     .user-list-dash #card-width {
-      width: 200px;
+      width: 300px;
       margin-bottom: 5px;
     }
 
     .admin-section-c {
-      max-width: 250px;
+      max-width: 300px;
     }
 
     #admin-icon {
       /* color: var(--text-color); */
       position: relative;
       font-size: 1.2rem;
-      width: 200px;
+      width: 400px;
     }
 
     #admin-icon a {
@@ -603,7 +603,7 @@
       /* color: var(--color-third); */
       position: absolute;
       top: 0px;
-      right: 10px;
+      right: 5px;
     }
   }
 
