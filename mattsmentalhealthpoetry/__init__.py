@@ -19,7 +19,10 @@ if ENV == 'dev':
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:prologe@localhost/phoenix-poetry'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://wilrymijbtojcd:f47198'\
+                '586c695e41a9a0a011ca7b63da1ad53bdad197e23ac3467fb1d7c42b27@e'\
+                'c2-54-72-155-238.eu-west-1.compute.amazonaws.com:5432/db29ru'\
+                'bk7dkln5'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "@@!$£%@$£^@£"
