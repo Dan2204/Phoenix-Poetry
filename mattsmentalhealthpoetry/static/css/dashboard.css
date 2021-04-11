@@ -344,7 +344,7 @@
 .user-list .user-card,
 .user-list-dash .user-card {
   border: 2px solid var(--color-secondary);
-  /* margin-left: 5px; */
+  margin-left: 5px;
 }
 
 .user-list .card,
