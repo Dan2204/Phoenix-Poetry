@@ -14,7 +14,7 @@ app = Flask(__name__)
 # app.config.from_object(Config)
 ENV = 'dev'
 
-if ENV == 'dev':
+if ENV == 'pub':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:prologe@localhost/phoenix-poetry'
 else:
