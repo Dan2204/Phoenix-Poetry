@@ -9,7 +9,7 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or '@£$£^$%*%^(£%$£)'
 
     # DATABASE SET UP #
-    ENV = 'dev:sqlite'
+    ENV = 'production'
 
     if ENV == 'dev:psql':
         SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:prologe@localhost/phoenix-poetry'

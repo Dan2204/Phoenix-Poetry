@@ -1,6 +1,6 @@
-
+.DS_store
 migrations/
 __pycache__/
 old_code/
-Procfile
-runtime.txt
+static/poem_pics
+data.db
