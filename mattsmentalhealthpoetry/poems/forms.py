@@ -12,7 +12,7 @@ class CreatePoemForm(FlaskForm):
 
     title = StringField('Title: ', validators=[DataRequired()])
     image = FileField('Add Image: ', validators=[
-                        FileAllowed(['jpg', 'png', 'gif'])])
+                        FileAllowed(['jpg', 'png', 'gif', 'jpeg'])])
     content = TextAreaField('Poem: ', validators=[DataRequired()])
     publish = BooleanField('Publish: ')
     submit_poem = SubmitField('Save')

@@ -1,28 +1,25 @@
 import os
-from
-# from dotenv import load_dotenv
+
+from dotenv import load_dotenv
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-# load_dotenv(os.path.join(basedir, '.env'))
+load_dotenv(os.path.join(basedir, '.env'))
 
 class Config(object):
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
-    # SQLITE SET UP #
-    # SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-    #     'sqlite:///' + os.path.join(basedir, 'data.db')
+    SECRET_KEY = os.environ.get('SECRET_KEY') or '@£$£^$%*%^(£%$£)'
 
-    ENV = 'dev'
+    # DATABASE SET UP #
+    ENV = 'dev:sqlite'
 
-    if ENV == 'dev':
-        app.debug = True
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:prologe@localhost/phoenix-poetry'
+    if ENV == 'dev:psql':
+        SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:prologe@localhost/phoenix-poetry'
+    elif ENV == 'dev:sqlite':
+        SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+                'sqlite:///' + os.path.join(basedir, 'data.db')
     else:
-        app.debug = False
-        app.config['SQLALCHEMY_DATABASE_URI'] = ''
-
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data.db')
+        SQLALCHEMY_DATABASE_URI = 'postgres://wilrymijbtojcd:f47198'\
+                    '586c695e41a9a0a011ca7b63da1ad53bdad197e23ac3467fb1d7c42b27@e'\
+                    'c2-54-72-155-238.eu-west-1.compute.amazonaws.com:5432/db29ru'\
+                    'bk7dkln5'
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False

@@ -157,7 +157,7 @@
         <div class="col-lg-6">
 
           <div id="scroll-to-other-poems">
-            <div id="dash-head" class="mb-3">
+            <div id="dash-head" class="test-scroll mb-3">
               <h2 id="other-poems">Poem List</h2>
               <hr class="hr-head" style="width: 150px;">
             </div>
@@ -166,20 +166,26 @@
               {% if not other_poem.id == poem.id %}
 
                 <div class="poems-in-list">
+                  {% if other_poem.title | length > 22 %}
+                    {% set tl = 20 %}
+                  {% else %}
+                    {% set tl = other_poem.title | length %}
+                  {% endif %}
                   <a href="{{ url_for('core.home', poem_id=other_poem.id) }}">
-                    <p id="select-title">'{{ other_poem.title }}'</p>
+                    <p id="select-title">'{{ other_poem.title[:tl] }} {% if tl == 20 %}...{% endif %}'</p>
                       {% if other_poem.poem_image %}
-                      <p>
-                        <img width="100" height="100" style="margin: 3px 0px;"
+                      <p id="pil-img">
+                        <img width="100" height="100" style="margin: 0px 0px;"
                              src="{{ url_for('static', filename='poem_pics/' + other_poem.poem_image) }}">
                       {% else %}
-                        <img width="30" height="30" style="margin-left: 15px;"
+                      <p id="pil-img">
+                        <img width="100" height="100" style="margin-left: 0px;"
                              src="{{ poem.user.avatar(256) }}">
                       {% endif %}
                       </p>
                     <!-- </p> -->
                     <!-- <p>Created by: {{ other_poem.user.name }}</p> -->
-                    <p>Created on: {{ moment(other_poem.creation_date).format('LL') }}</p>
+                    <p id="pil-date">Created on: {{ moment(other_poem.creation_date).format('LL') }}</p>
                     <p>Comments (<span id="num-comments{{ other_poem.id }}"></span>)</p>
                   </a>
                 </div>
@@ -194,7 +200,7 @@
 
     </div> <!-- poem-container -->
   </div> <!-- MAIN PAGE CONTAINER -->
-  <div class="footer add-black"></div>
+  <!-- <div class="footer add-black"></div> -->
 
 
 {% endblock %}

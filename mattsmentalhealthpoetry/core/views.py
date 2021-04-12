@@ -1,3 +1,5 @@
+import operator
+
 from mattsmentalhealthpoetry import db
 from mattsmentalhealthpoetry.core import bp
 from mattsmentalhealthpoetry.models import Poem, Comment, User
@@ -27,10 +29,13 @@ def home(poem_id=None):
 
     # Assign current users poems if loggged on and poems present and published #
     if current_user.is_authenticated and current_user.poems:
-        poems = [poem for poem in current_user.poems if poem.published]
+        poems_us = [poem for poem in current_user.poems if poem.published]
+        poems = sorted(poems_us, key=operator.attrgetter('creation_date'),
+                        reverse=True)
     else:
         poems = Poem.query.filter_by(published=True).order_by(
-                                                       Poem.creation_date).all()
+                                                       Poem.creation_date.desc()
+                                                       ).all()
 
     if poem_id is not None:
         view_poem = [poem for poem in poems if poem.id == poem_id]
