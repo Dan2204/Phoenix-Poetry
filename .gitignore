@@ -1,6 +1,6 @@
-.DS_store
+/.DS_store
 migrations/
 __pycache__/
 old_code/
 static/poem_pics
-data.db
+/data.db
