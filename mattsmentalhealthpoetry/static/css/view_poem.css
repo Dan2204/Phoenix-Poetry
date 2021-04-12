@@ -280,7 +280,7 @@
 #other-poem-container {
   text-align: right;
   /* height: 156vh; */
-  height: 100vh;
+  height: 120vh;
   overflow: scroll;
   padding-top: 10px;
   /* border: 1px solid var(--color-secondaryT); */
