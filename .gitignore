@@ -3,4 +3,3 @@ migrations/
 __pycache__/
 old_code/
 static/poem_pics
-/data.db
