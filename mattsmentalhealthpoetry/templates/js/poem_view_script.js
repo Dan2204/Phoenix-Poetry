@@ -54,13 +54,3 @@ show_tag.addEventListener('click', (e) => {
     comments_box.style.display = "block";
   }
 });
-
-// show_tag.addEventListener('click', (e) => {
-//   if(comments_box.style.height === "100%") {
-//     comments_box.style.height = "0";
-//     comments_box.style.opacity = "0";
-//   } else {
-//     comments_box.style.height = "100%";
-//     comments_box.style.opacity = "1";
-//   }
-// });
