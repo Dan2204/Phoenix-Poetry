@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Niconne&family=Shadows+Into+Light&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap');
 
 :root {
   --bg-color: #18191A;
@@ -21,16 +21,36 @@ body {
 
 nav .container {
   padding-left: 50px;
+  position:relative;
+}
+
+nav .container img {
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  height: 2.5em;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 8px #555;
+  opacity: .8;
+}
+
+nav .container .img-brand {
+  align-items: center;
+  margin: 0 50px 0 0;
+  padding: 0;
 }
 
 nav {
   background-color: #333;
   color: var(--text-color);
   position: relative;
+  padding-top: 0;
 }
 
 #nav-tag {
-  margin-top: 10px;
+  margin-top: 20px;
   height: 10px;
 }
 
@@ -53,6 +73,7 @@ nav #nav-brand-text {
   font-size: 2.5rem;
   letter-spacing: 1px;
   color: var(--color-secondary);
+  text-shadow: 0 0 8px #555;
 }
 
 /* nav .collapse {
@@ -85,7 +106,28 @@ nav .navbar-toggler .collapse {
 
 @media only screen and (max-width: 450px) {
 
-  nav .container {
-    /* padding-left: 50px; */
+  #nav-style {
+    padding-right: 5px;
+    padding-left: 5px;
   }
+
+  nav .container {
+    padding-right: 0px;
+  }
+
+  nav .container .img-brand {
+    margin: 0 0 0 0;
+  }
+
+  nav .container button {
+    padding: 2px 3px;
+    /* margin-right: 10px; */
+  }
+
+  nav .container img {
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 8px #333;
+  }
+
 }

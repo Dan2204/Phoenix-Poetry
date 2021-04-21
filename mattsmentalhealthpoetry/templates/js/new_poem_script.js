@@ -25,9 +25,6 @@
     } else {
       newHeight = std_len;
     }
-    console.log("Number of line breaks: " + numberOfLineBreaks);
-    console.log("std_len: " + std_len);
-    console.log("newHeight: " + newHeight);
 
     return newHeight;
   }

@@ -40,7 +40,6 @@
       }
     }
 
-
     function toggle_tip{{ comments[i].id }}() {
       if (text_tag{{ comments[i].id }}.style.visibility == "visible") {
         text_tag{{ comments[i].id }}.style.visibility = "hidden";
@@ -51,16 +50,13 @@
       }
     }
 
-
     function setClickEvents{{ comments[i].id }}() {
       select_dots{{ comments[i].id }}.addEventListener("click", toggle_tip{{ comments[i].id }});
     }
-
 
     function removeClickEvents{{ comments[i].id }}() {
       select_dots{{ comments[i].id }}.removeEventListener("click", toggle_tip{{ comments[i].id }});
     }
 
   {% endif %}
-
 {% endfor %}

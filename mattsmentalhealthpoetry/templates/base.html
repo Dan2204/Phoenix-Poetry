@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <meta name="description" content="Poetry as an outlet for dealing with Alcoholism and Mental Health issues">
+    <meta name="keywords" content="poetry,phoenix-poetry,mental health,alcoholism,mental disorder,anxiety,depression">
+
+    <meta id="MetaRobots" name="ROBOTS" content="Index, Follow" />
+
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -34,7 +39,10 @@
     {{ moment.include_jquery() }}
     {{ moment.include_moment() }}
 
-    <title>{{ title | default("MMHP") }}</title>
+    <title>{{ title | default("MMHP") }} | Poetry | Mental Health</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo_small.JPG') }}" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
   </head>
   <body>
 
@@ -44,9 +52,8 @@
     <nav class="navbar navbar-expand-md navbar-dark sticky-top" id="nav-style">
 
       <div class="container">
-        <h3 class="navbar-brand" style="margin: 0 50px 0 0; padding: 0;">
-          <!-- <img src="" width="30" height="30"
-            class="d-inline-block align-top" alt="P"> -->
+        <h3 class="navbar-brand img-brand">
+          <img src="{{ url_for('static', filename='img/logo_small.JPG') }}" width="50">
           <a href="{{ url_for('core.home') }}" id="nav-brand-text">Phoenix Poetry</a>
         </h3>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
@@ -70,26 +77,26 @@
 
               {% if current_user.admin %}
 
-                <li class="nav-item mr-3">
+                <li class="nav-item mr-2">
                   <a href="{{ url_for('dashboard.admin') }}"
                     class="nav-link {% if title and title=='admin' %}active{% endif %}">Dashboard</a>
                 </li>
 
               {% else %}
 
-                <li class="nav-item mr-3">
+                <li class="nav-item mr-1">
                   <a href="{{ url_for('users.change_password') }}"
                     class="nav-link">Password</a>
                 </li>
 
-                <li class="nav-item mr-3">
+                <li class="nav-item mr-1">
                   <a href="{{ url_for('users.edit_user', user_id=current_user.id) }}"
                     class="nav-link">Details</a>
                 </li>
 
               {% endif %}
 
-                <li class="nav-item mr-3">
+                <li class="nav-item mr-1">
                   <a href="{{ url_for('users.logout') }}"
                     class="nav-link">Logout</a>
                 </li>
@@ -152,7 +159,23 @@
       }, 3000);
     </script>
 
-  {% block script %}{% endblock %}
+    {% block script %}{% endblock %}
 
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <script>
+      window.cookieconsent.initialise({
+        "palette": {
+          "popup": {
+            "background": "#242526"
+          },
+          "button": {
+            "background": "#17A2B8"
+          }
+        },
+        "theme": "edgeless",
+        "position": "top",
+        "static": true
+      });
+    </script>
   </body>
 </html>
